@@ -1,90 +1,90 @@
 <!doctype html>
 <html>
-	<head>
-		<script type="text/javascript">
-			document.onreadystatechange = function() {
-				if (document.readyState == "complete") {
+  <head>
+    <script type="text/javascript">
+      document.onreadystatechange = function() {
+        if (document.readyState == "complete") {
 				
-					var pops = ['OLLY MURS','THE WANTED','NICKI MINAJ','ONE DIRECTION'];
-					var backgrounds = ['#FF66CC','#99FF00','#9933FF','#FF0000','#99FF00','#FF9900','#66FFFF'];
-					var delay = 100;
-					var lastRun;
-					var tempDelay;
-					var el = 0;
-					var pause = false;
-					var lastRand = 0;
+          var pops = ['OLLY MURS','THE WANTED','NICKI MINAJ','ONE DIRECTION'];
+          var backgrounds = ['#FF66CC','#99FF00','#9933FF','#FF0000','#99FF00','#FF9900','#66FFFF'];
+          var delay = 100;
+          var lastRun;
+          var tempDelay;
+          var el = 0;
+          var pause = false;
+          var lastRand = 0;
 					
-					function play(){
-						
-						// Populate the pop div with the current array element
-						document.getElementById("pop").innerHTML = pops[el];
-						
-						// Move to the next array element
-						el++;
-						if(el == 4){
-							el = 0;
-						}
-						
-						// Set a random background color from the backgrounds array
-						document.body.style.backgroundColor = backgrounds[Math.round(Math.random() * 6)];
-						
-						lastRun = new Date();
-						
-						// Call again 100ms later
-						timeoutId = setTimeout(play, delay);
-					};
+          function play(){
 
-					function togglePause() {
-						var curTime = new Date();
-						pause = !pause;
-						
-						if (!pause) {			
-							// Start running again 
-							lastRun = curTime.valueOf() + tempDelay - delay;
-							timeoutId = setTimeout(play, tempDelay);
-						}
-						else {					
-							// Clear the next call of play()
-							clearTimeout(timeoutId);
-							tempDelay = delay - (curTime.valueOf() - lastRun);
+            // Populate the pop div with the current array element
+            document.getElementById("pop").innerHTML = pops[el];
 
-							// Choose a random element. Make sure it's different to the last one.
-							var rand = Math.round(Math.random() * 3);
-							while(rand == lastRand)
-								rand = Math.round(Math.random() * 3);
-							lastRand = rand;
+            // Move to the next array element
+            el++;
+            if(el == 4){
+              el = 0;
+            }
 
-							// Populate the pop div with the randomised array element
-							document.getElementById("pop").innerHTML = pops[rand];
-						}
-					}
+            // Set a random background color from the backgrounds array
+            document.body.style.backgroundColor = backgrounds[Math.round(Math.random() * 6)];
+
+            lastRun = new Date();
+
+            // Call again 100ms later
+            timeoutId = setTimeout(play, delay);
+          };
+
+          function togglePause() {
+            var curTime = new Date();
+            pause = !pause;
+
+            if (!pause) {			
+              // Start running again 
+              lastRun = curTime.valueOf() + tempDelay - delay;
+              timeoutId = setTimeout(play, tempDelay);
+            }
+            else {					
+              // Clear the next call of play()
+              clearTimeout(timeoutId);
+              tempDelay = delay - (curTime.valueOf() - lastRun);
+
+              // Choose a random element. Make sure it's different to the last one.
+              var rand = Math.round(Math.random() * 3);
+              while(rand == lastRand)
+                rand = Math.round(Math.random() * 3);
+              lastRand = rand;
+
+              // Populate the pop div with the randomised array element
+              document.getElementById("pop").innerHTML = pops[rand];
+            }
+          }
 					
-					document.addEventListener("keydown", function(){
-						togglePause();
-					}, false);
-					
-					play();
-				}
-			}
-		</script>
-		<style>
-			body{
-				background: green;
-			}
+          document.addEventListener("keydown", function(){
+            togglePause();
+          }, false);
 
-			#pop {
-				font-family: Arial, Helvetica, sans-serif;
-				font-size: 170px;
-				font-weight: bold;
-				width: 100%;
-				height: 100%;
-				top: 35%;
-				text-align: center;
-				position: fixed;
-			}
-		</style>
-	</head>
-	<body>
-		<div id="pop">OLLY MURS</div>
-	</body>
+          play();
+        }
+      }
+    </script>
+    <style>
+      body{
+        background: green;
+      }
+
+      #pop {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 170px;
+        font-weight: bold;
+        width: 100%;
+        height: 100%;
+        top: 35%;
+        text-align: center;
+        position: fixed;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="pop">OLLY MURS</div>
+  </body>
 </html>
